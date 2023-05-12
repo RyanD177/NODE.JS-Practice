@@ -6,13 +6,16 @@
 // 6. give the user their winning
 // 7. Play again
 
+const prompt = require("prompt-sync")();
+
 function deposit () {
 
-
+const depositAmount = prompt("Enter a deposit amount: ")
 
 
     
 
 
 }
+
 deposit();
