@@ -8,55 +8,46 @@
 
 const prompt = require("prompt-sync")();
 
-const deposit  = ()  => { // arrow function to get bet for the user and check if its a number or more then 0, if not then invalid is displayed.
+const deposit = () => {
     while(true){
-let depositAmount = prompt("What amount do you want to deposit: ")
-let numberDepositAmount = parseFloat(depositAmount);
-
-if(isNaN(numberDepositAmount) || numberDepositAmount <= 0){
-    console.log("invalid ")
-} else{
-    return numberDepositAmount
-}   
-    }
-
-}
-const getNumberOfLines = () => {
-    while(true){
-        let lines = prompt("Enter the number of lines to bet (1-3) : ")
-        let numberOfLines = parseFloat(lines);
-        
-        if(isNaN(numberOfLines) || numberOfLines <= 0 || numberOfLines >3 ){ // 3 number of lines in our bet machine.
-            console.log("invalid ")
-        } else{
-            return numberOfLines
-        }   
-            }
-        
-
-
-}
- const getBet = (balance) => {
-
-    while(true){
-        let bet = prompt("Enter the total bet : ") // number of bet has to be less then your balance.
-        let numberBet = parseFloat(bet);
-        
-        if(isNaN(numberBet) || numberBet <= 0 || numberBet > balance ){ // if you put in a bet greater then your balance, invalid 
-            console.log("You are betting more then you have bro ")
-        } else{
-            return numberBet
-        }   
-            }
-        
-
-
+   const depositAmount = prompt("How much would you like to deposit:  ")
+   const depositAmounttoNumber = parseFloat(depositAmount);
+ if(isNaN(depositAmounttoNumber) || depositAmounttoNumber <=0){
+   console.log("Invalid, this is not a number. ")
+ }else{
+    return depositAmounttoNumber
  }
+    }
+}
+const lines = () => {
+    while(true){
+        const lines = prompt("How many lines would you like to bet on (1-3):  ")
+        const linesToNum = parseInt(lines);
+      if(isNaN(linesToNum) || linesToNum >3){ //cause only 1-3 lines.
+        console.log("Invalid, put between 1-3 lines please.s ")
+      }else{
+         return linesToNum
+      }
+         }
+}
 
-let balance  = deposit();
+const getBet = (balance,lines) => {
+
+    while(true){
+        const totalBet = prompt("Enter your bet per line:  ")
+        const betNum = parseInt(totalBet);
+      if(isNaN(betNum) ||betNum <= 0 || betNum > balance / lines ){
+        console.log("Invalid Bet ")
+      }else{
+         return betNum
+      }
+         }
+}
 
 
-const numberOfLines = getNumberOfLines();
 
+let balance = deposit()
 
-const bet = getBet(balance);
+const linesBetOn = lines();
+
+const bet = getBet(balance,linesBetOn)
